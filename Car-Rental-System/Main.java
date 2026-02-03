@@ -148,19 +148,19 @@ class CarRentalSystem {
             sc.nextLine(); // Consume newline
 
             if (choice == 1) {
-                System.out.println("\n== Rent a Car ==\n");
+                System.out.println(" == Rent a Car == ");
                 System.out.print("Enter your name: ");
                 String customerName = sc.nextLine();
 
-                System.out.println("\nAvailable Cars:");
+                System.out.println(" Available Cars:");
                 for (Car car : cars) {
                     if (car.isAvailable()) {
                         System.out.println(car.getCarId() + " - " + car.getBrand() + " " + car.getModel());
                     }
                 }
 
-                System.out.print("\nEnter the car ID you want to rent: ");
-                String carId = sc.nextLine();
+                System.out.print(" Enter the car ID you want to rent: ");
+                String carId = sc.nextLine().toUpperCase();
 
                 System.out.print("Enter the number of days for rental: ");
                 int rentalDays = sc.nextInt();
@@ -179,29 +179,29 @@ class CarRentalSystem {
 
                 if (selectedCar != null) {
                     double totalPrice = selectedCar.calculatePrice(rentalDays);
-                    System.out.println("\n== Rental Information ==\n");
+                    System.out.println(" == Rental Information == ");
                     System.out.println("Customer ID: " + newCustomer.getCustomerId());
                     System.out.println("Customer Name: " + newCustomer.getName());
                     System.out.println("Car: " + selectedCar.getBrand() + " " + selectedCar.getModel());
                     System.out.println("Rental Days: " + rentalDays);
                     System.out.printf("Total Price: $%.2f%n", totalPrice);
 
-                    System.out.print("\nConfirm rental (Y/N): ");
+                    System.out.print(" Confirm rental (Y/N): ");
                     String confirm = sc.nextLine();
 
                     if (confirm.equalsIgnoreCase("Y")) {
                         rentCar(selectedCar, newCustomer, rentalDays);
-                        System.out.println("\nCar rented successfully.");
+                        System.out.println(" Car rented successfully.");
                     } else {
-                        System.out.println("\nRental canceled.");
+                        System.out.println(" Rental canceled.");
                     }
                 } else {
-                    System.out.println("\nInvalid car selection or car not available for rent.");
+                    System.out.println(" Invalid car selection or car not available for rent.");
                 }
             } else if (choice == 2) {
-                System.out.println("\n== Return a Car ==\n");
+                System.out.println(" == Return a Car == ");
                 System.out.print("Enter the car ID you want to return: ");
-                String carId = sc.nextLine();
+                String carId = sc.nextLine().toUpperCase();
 
                 Car carToReturn = null;
                 for (Car car : cars) {
@@ -235,7 +235,7 @@ class CarRentalSystem {
                 System.out.println("Invalid choice. Please enter a valid option.");
             }
         }
-        System.out.println("\nThank you for using the Car Rental System!");
+        System.out.println("Thank you for using the Car Rental System!");
     }
 
 }
@@ -244,12 +244,16 @@ public class Main {
     public static void main(String[] args) {
         CarRentalSystem rentalSystem = new CarRentalSystem();
 
-        Car car1 = new Car("C001", "Toyota", "Camry", 60.0); // Different base price per day for each car
-        Car car2 = new Car("C002", "Honda", "Accord", 70.0);
-        Car car3 = new Car("C003", "Mahindra", "Thar", 150.0);
+        Car car1 = new Car("C001", "Tata", "Nano", 50.0);
+        Car car2 = new Car("C002", "Toyota", "Camry", 60.0); // Different base price per day for each car
+        Car car3 = new Car("C003", "Honda", "Accord", 70.0);
+        Car car4 = new Car("C004", "Mahindra", "Thar", 150.0);
+        Car car5 = new Car("C005", "Kia", "Sonet", 200.0);
         rentalSystem.addCar(car1);
         rentalSystem.addCar(car2);
         rentalSystem.addCar(car3);
+        rentalSystem.addCar(car4);
+        rentalSystem.addCar(car5);
 
         rentalSystem.menu();
     }
